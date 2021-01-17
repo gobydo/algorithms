@@ -7,7 +7,7 @@ import (
 
 func TestBinarySearch_Insert(t *testing.T) {
 
-	bst := NewBinarySearch()
+	bst := NewBinary()
 
 	bst.Insert(8)
 	bst.Insert(4)
@@ -59,7 +59,7 @@ func TestBinarySearch_Insert(t *testing.T) {
 
 func TestBinarySearch_Search(t *testing.T) {
 
-	bst := NewBinarySearch()
+	bst := NewBinary()
 
 	bst.Insert(8)
 	bst.Insert(4)
@@ -119,7 +119,7 @@ func TestBinarySearch_Remove(t *testing.T) {
 				key: 9,
 			},
 			factory: func() *BinarySearch {
-				bst := NewBinarySearch()
+				bst := NewBinary()
 
 				bst.Insert(8)
 				bst.Insert(4)
@@ -139,7 +139,7 @@ func TestBinarySearch_Remove(t *testing.T) {
 				key: 12,
 			},
 			factory: func() *BinarySearch {
-				bst := NewBinarySearch()
+				bst := NewBinary()
 
 				bst.Insert(8)
 				bst.Insert(4)

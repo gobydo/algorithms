@@ -14,7 +14,7 @@ type BinarySearch struct {
 	root *Node
 }
 
-func NewBinarySearch() *BinarySearch {
+func NewBinary() *BinarySearch {
 	return &BinarySearch{}
 }
 
