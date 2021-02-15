@@ -75,27 +75,34 @@ func TestBinarySearch_Search(t *testing.T) {
 	tests := []struct {
 		name string
 		args args
-		want bool
+		want *Node
 	}{
-		// TODO: Add test cases.
 		{
 			name: "search existing element",
 			args: args{
 				key: 12,
 			},
-			want: true,
+			want: &Node{
+				key: 12,
+			},
 		},
 		{
 			name: "search non existing element",
 			args: args{
 				key: 40,
 			},
-			want: false,
+			want: nil,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := bst.Search(tt.args.key); got != tt.want {
+			got := bst.Search(tt.args.key)
+
+			if tt.want == nil && tt.want != got {
+				t.Errorf("Search() = %v, want %v", got, tt.want)
+			}
+
+			if tt.want != nil && got.key != tt.want.key {
 				t.Errorf("Search() = %v, want %v", got, tt.want)
 			}
 		})

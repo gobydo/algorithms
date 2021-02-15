@@ -30,7 +30,7 @@ func (b *BinarySearch) Insert(key int) {
 	}
 }
 
-func (b *BinarySearch) Search(key int) bool {
+func (b *BinarySearch) Search(key int) *Node {
 	return b.searchNode(b.root, key)
 }
 
@@ -64,9 +64,13 @@ func (b *BinarySearch) insertNode(node, newNode *Node) {
 	}
 }
 
-func (b *BinarySearch) searchNode(node *Node, key int) bool {
+func (b *BinarySearch) searchNode(node *Node, key int) *Node {
 	if node == nil {
-		return false
+		return nil
+	}
+
+	if key == node.key {
+		return node
 	}
 
 	if key < node.key {
@@ -76,7 +80,8 @@ func (b *BinarySearch) searchNode(node *Node, key int) bool {
 	if key > node.key {
 		return b.searchNode(node.right, key)
 	}
-	return true
+
+	return nil
 }
 
 func (b *BinarySearch) removeNode(node *Node, key int) *Node {
