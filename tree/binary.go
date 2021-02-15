@@ -26,24 +26,32 @@ func (b *BinarySearch) Insert(key int) {
 		b.root = newNode
 		return
 	} else {
-		insertNode(b.root, newNode)
+		b.insertNode(b.root, newNode)
 	}
 }
 
 func (b *BinarySearch) Search(key int) bool {
-	return searchNode(b.root, key)
+	return b.searchNode(b.root, key)
 }
 
 func (b *BinarySearch) Remove(key int) {
-	removeNode(b.root, key)
+	b.removeNode(b.root, key)
 }
 
-func insertNode(node, newNode *Node) {
+func (b *BinarySearch) insertNode(node, newNode *Node) {
+	if newNode == nil {
+		return
+	}
+
+	if node == nil {
+		return
+	}
+
 	if newNode.key < node.key {
 		if node.left == nil {
 			node.left = newNode
 		} else {
-			insertNode(node.left, newNode)
+			b.insertNode(node.left, newNode)
 		}
 	}
 
@@ -51,37 +59,37 @@ func insertNode(node, newNode *Node) {
 		if node.right == nil {
 			node.right = newNode
 		} else {
-			insertNode(node.right, newNode)
+			b.insertNode(node.right, newNode)
 		}
 	}
 }
 
-func searchNode(node *Node, key int) bool {
+func (b *BinarySearch) searchNode(node *Node, key int) bool {
 	if node == nil {
 		return false
 	}
 
 	if key < node.key {
-		return searchNode(node.left, key)
+		return b.searchNode(node.left, key)
 	}
 
 	if key > node.key {
-		return searchNode(node.right, key)
+		return b.searchNode(node.right, key)
 	}
 	return true
 }
 
-func removeNode(node *Node, key int) *Node {
+func (b *BinarySearch) removeNode(node *Node, key int) *Node {
 	if node == nil {
 		return nil
 	}
 
 	if key < node.key {
-		node.left = removeNode(node.left, key)
+		node.left = b.removeNode(node.left, key)
 		return node
 	}
 	if key > node.key {
-		node.right = removeNode(node.right, key)
+		node.right = b.removeNode(node.right, key)
 		return node
 	}
 
@@ -107,6 +115,6 @@ func removeNode(node *Node, key int) *Node {
 	}
 
 	node.key = inOrderSuccessor.key
-	node.right = removeNode(node.right, inOrderSuccessor.key)
+	node.right = b.removeNode(node.right, inOrderSuccessor.key)
 	return node
 }
