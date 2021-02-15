@@ -100,7 +100,7 @@ func removeNode(node *Node, key int) *Node {
 		return node
 	}
 
-	// take inorderNextGreater value => choose the smallest key that is bigger than removed key
+	// node has two children, take inorderNextGreater value => choose the smallest key that is bigger than removed key
 	inOrderSuccessor := node.right
 	for inOrderSuccessor.left != nil {
 		inOrderSuccessor = inOrderSuccessor.left
